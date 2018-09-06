@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>去除数组中的连续重复数字</title>
+</head>
+<body>
+
+
+<script>
+    //1. 去除数组中的连续重复数字
+    var oldarray=[284, 404, 532, 676, 824, 972, 1116, 1248, 1372, 1472, 1532, 1536, 1488, 1388, 1256, 1092, 916, 736, 564, 400, 252, 120, 8, -76, -144, -200, -236, -264, -288, -300, -308, -316, -316, -312, -312, -308, -304, -300, -296, -292, -288, -284, -280, -276, -272, -268, -264, -260, -256, -256, -252, -248, -244, -240, -236, -228, -224, -220, -216, -212, -208, -204, -196, -192, -188, -180, -176, -176, -172, -164, -160, -156, -152, -144, -136, -132, -128, -124, -120, -112, -108, -104, -100, -92, -88, -84, -76, -76, -72, -68, -68, -64, -60, -56, -52, -48, -44, -44, -40, -36];
+    var oldarray1=[0,0,2,5,5,2,5,5,5,5,71,71,71,15,15,15,16,18,19,20,20,20,20,20,20,20,35,35,36,36,15,20]
+
+    var array1=elimateCRepeatedNum(oldarray);
+    var array2=elimateCRepeatedNum(oldarray1);
+
+    console.log(array1);
+    console.log(array2);
+
+    function elimateCRepeatedNum(array) {
+        var newArray=[];
+        for(var i=0;i<array.length;i++){
+            if(i<array.length-1){
+                if(array[i]!=array[i+1]){
+                    newArray.push(array[i]);
+                }
+            }
+            if(i==(array.length-1)){
+                if(array[i]!=array[i-1]){
+                    newArray.push(array[i]);
+                }
+            }
+
+        }
+        return newArray;
+    }
+
+    //2. 去除数组中的重复数字
+    var oArray=[404, 532, 676, 824, 972,1116, 1248, 1372, 1472, 1532, 1536, 1488, 1388, 1256, 1092, 916, 736, 564, 400, 252, 120, 8, -76, -144, -200, -236, -264, -288, -300, -308, -316, -316, -312, -312, -308, -304, -300, -296, -292, -288, -284, -280, -276, -272, -268, -264, -260, -256, -256, -252, -248, -244, -240, -236, -228, -224, -220, -216, -212, -208, -204, -196, -192, -188, -180, -176, -176, -172, -164, -160, -156, -152, -144, -136, -132, -128, -124, -120, -112, -108, -104, -100, -92, -88, -84, -76, -76, -72, -68, -68, -64, -60, -56, -52, -48, -44, -44, -40, -36];
+    var oArray1=[0,2,5,5,2,5,5,5,5,71,71,71,15,15,15,16,18,19,20,20,20,20,20,20,20,35,35,36,36,15,20];
+    var test1=[1];
+    var test2=[1,3,5,7,9,5,8,6,3,1,2,9,15];
+
+    var a1=elimateRepeatedNum(oArray);
+    var a2= elimateRepeatedNum(oArray1);
+    var t1=elimateRepeatedNum(test1);
+    var t2=elimateRepeatedNum(test2);
+
+    console.log(a1);
+    console.log(a2);
+    console.log(t1);
+    console.log(t2);
+
+
+
+    function elimateRepeatedNum(array) {  //去除数组中的重复数字
+        var newArray=[];
+        if(array.length<2){
+            newArray=array
+        }else{
+            for(var i=0;i<array.length;i++){
+                var num=array[i];
+                var total=newArray.length;
+                for(var j=0;j<newArray.length;j++){
+                    var num1=newArray[j];
+                    if(num!=num1){
+                        total--;
+                    }
+                }
+                if(total===0){
+                    newArray.push(num);
+                }
+            }
+        }
+
+       return newArray;
+    }
+
+    //3.数组排序
+
+    var testA=[1,5,2,3,1,6,8,4,25,15];
+
+    orderD(testA);
+    console.log(testA);
+    orderA(testA);
+    console.log(testA);
+
+    function orderA(a) {     //升序函数
+        for(var i=0;i<a.length;i++){
+            for(var j = i + 1;j<a.length;j++){
+                if(a[i]>a[j]){
+                    var tmp = a[i];
+                    a[i] = a[j];
+                    a[j] = tmp;
+                }
+            }
+        }
+    }
+
+    function orderD(a) {     //降序函数
+        for(var i=0;i<a.length;i++){
+            for(var j = i + 1;j<a.length;j++){
+                if(a[i]<a[j]){
+                    var tmp = a[i];
+                    a[i] = a[j];
+                    a[j] = tmp;
+                }
+            }
+        }
+    }
+
+     //4.将一个数组划分为多个数组（多个满足条件的片段数组）
+     var test4=[0,0,0,0,130,150,126,110,100,90,80,125,135,165,0,0,0,123,126];
+    var test5=[123,125,0,0,130,150,120,120,126,110,100,90,80,125,135,165,0,0,0,123,126];
+    var test6=[126,0,0,0,130,150,126,110,100,90,80,125,135,165,0,0,0,123,126];
+    var test7=[0,130,120,120,150,126,110,100,90,80,125,135,165,0,0,0,123,126];
+    var test8=[110,100,90,80];
+
+
+    function getSubArray(test4,boundary) {  //单 boundary 情况
+
+    var border=[];
+    var subArray=[];
+
+    // 找到转入数组的分割点，放入数组border当中
+     for(var i=0;i<test4.length-1;i++){
+         if((test4[i]-boundary)*(test4[i+1]-boundary)<0){
+             border.push(i);
+         }
+     }
+
+     //按照分割点使用Slice函数将数组切割得到若干子数组，并压入subArray当中构建二维数组
+     if(border.length<1){
+         subArray=test4;
+     }else{
+     for(var i=0;i<=border.length;i++){
+        var num=i;
+         var tempA=[];
+         if(num==0){
+             tempA=test4.slice(0,(border[0]+1))
+         }else if(num==border.length){
+             tempA=test4.slice((border[num-1]+1));
+         }else{
+             tempA=test4.slice((border[num-1]+1),(border[num]+1))
+         }
+
+         subArray.push(tempA);
+     }
+     }
+        console.log(subArray);
+     return subArray;   //返回二维数组
+
+    }
+
+    getSubArray(test4,120);
+    getSubArray(test5,120);
+    getSubArray(test6,120);
+    getSubArray(test7,120);
+    getSubArray(test8,120);
+
+
+    function getsubArrayS(test4,boundary,borderArray) {  //根据具体情况做的更改
+
+        var border=[];
+        var subArray=[];
+
+        // 找到转入数组的分割点，放入数组border当中
+        for(var i=0;i<borderArray.length-1;i++){
+            if((borderArray[i]-boundary)*(borderArray[i+1]-boundary)<0){
+                border.push(i);
+            }
+        }
+
+        //按照分割点使用Slice函数将数组切割得到若干子数组，并压入subArray当中构建二维数组
+        if(border.length<1){
+            subArray=test4;
+        }else{
+        for(var i=0;i<=border.length;i++){
+            var num=i;
+            var tempA=[];
+            if(num==0){
+                tempA=test4.slice(0,(border[0]+1))
+            }else if(num==border.length){
+                tempA=test4.slice((border[num-1]+1));
+            }else{
+                tempA=test4.slice((border[num-1]+1),(border[num]+1))
+            }
+
+            subArray.push(tempA);
+        }
+        }
+
+        return subArray;   //返回二维数组
+
+    }
+
+
+    function getSubArrayMore(test4,boundary1,boundary2) {  //多 boundary 情况,
+
+        var border=[];
+        var subArray=[];
+
+        // 找到转入数组的分割点，放入数组border当中
+
+
+        for(var i=0;i<test4.length-1;i++){
+            if((test4[i]-boundary1)*(test4[i+1]-boundary1)<=0||(test4[i]-boundary2)*(test4[i+1]-boundary2)<=0){
+                border.push(i);
+            }
+        }
+
+        console.log(border);
+
+        //按照分割点使用Slice函数将数组切割得到若干子数组，并压入subArray当中构建二维数组
+        if(border.length<1){
+            subArray=test4;
+        }else{
+            for(var i=0;i<=border.length;i++){
+                var num=i;
+                var tempA=[];
+                if(num==0){
+                    tempA=test4.slice(0,(border[0]+1))
+                }else if(num==border.length){
+                    tempA=test4.slice((border[num-1]+1));
+                }else{
+                    tempA=test4.slice((border[num-1]+1),(border[num]+1))
+                }
+
+                subArray.push(tempA);
+            }
+        }
+        console.log(subArray);
+        return subArray;   //返回二维数组
+
+    }
+
+    var test9=[0,25,30,45,80,90,100,110,65,78,45,25,15,10,96,95,105,20,23,20,75];
+
+    getSubArrayMore(test9,30,80)
+    getSubArrayMore(test4,30,80)
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
